@@ -7,7 +7,7 @@ function App() {
   return (
     <div>
       Heart rate sensor
-      <Sensor device={HeartRate} deviceName="heart_rate" />
+      <Sensor Device={HeartRate} deviceName="heart_rate" />
     </div>
   );
 }
