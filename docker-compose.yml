@@ -1,0 +1,12 @@
+version: '3'
+services:
+  app:
+    image: smarttrainer
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    #volumes:
+    # - ./app/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+     - "6969:80"

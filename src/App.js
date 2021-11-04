@@ -1,25 +1,34 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import './App.css';
+import HeartRate from './bluetooth/devices/HeartRate';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      Heart rate sensor
+      <Sensor device={HeartRate} deviceName="heart_rate" />
     </div>
   );
 }
+
+function Sensor({ Device, deviceName }) {
+  const [device] = useState(new Device());
+
+  async function setup() {
+    await device.setup();
+  }
+  return (
+    <div>
+      {deviceName}
+      <button onClick={setup} type="button">connect</button>
+    </div>
+  );
+}
+
+Sensor.propTypes = {
+  Device: PropTypes.func.isRequired,
+  deviceName: PropTypes.string.isRequired,
+};
 
 export default App;
