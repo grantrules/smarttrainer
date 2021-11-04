@@ -4,12 +4,13 @@ FROM node:lts as build-stage
 
 WORKDIR /app
 
-COPY . .
+COPY package*.json ./
 
 RUN npm install
 
-RUN npm run build
+COPY . .
 
+RUN npm run build
 
 
 FROM nginx
